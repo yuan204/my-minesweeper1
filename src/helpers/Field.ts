@@ -1,3 +1,5 @@
+import { incrementNeibours } from "./CellManipulator";
+
 export enum CellState {
   empty = 0,
   bomb = 9,
@@ -10,7 +12,7 @@ export type Cell = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 export type Field = Cell[][];
 
-export type Coord = [Cell, Cell];
+export type Coord = [number, number];
 
 export const emptyFieldGenerator = (
   size: number,
@@ -33,6 +35,7 @@ export const fieldGenerator = (size: number, probability: number): Field => {
       if (restBombCount === 0) return fields;
       if (restBombCount / unProcessCount > Math.random()) {
         fields[y][x] = CellState.bomb;
+        incrementNeibours([x, y], fields);
         restBombCount--;
       }
       unProcessCount--;

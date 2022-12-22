@@ -1,6 +1,7 @@
-import { CellState, emptyFieldGenerator, fieldGenerator } from "./Field";
+import { CellState, emptyFieldGenerator, fieldGenerator, Cell } from "./Field";
 const { empty, bomb } = CellState;
-const filterBombs = (cells: Cell[]) => cells.filter((cell) => cell === bomb);
+const filterBombs = (cells: Cell[]): Cell[] =>
+  cells.filter((cell) => cell === bomb);
 describe("field generator", function () {
   describe("empty field generator", function () {
     it("2x2", function () {
@@ -55,6 +56,12 @@ describe("field generator", function () {
       const cells = fields.flat();
       console.table(fields);
       expect(filterBombs(cells)).toHaveLength(8);
+    });
+    it("10x10 with probability 0.25", function () {
+      const fields = fieldGenerator(10, 0.25);
+      const cells = fields.flat();
+      console.table(fields);
+      expect(filterBombs(cells)).toHaveLength(25);
     });
   });
 });
