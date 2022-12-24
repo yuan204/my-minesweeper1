@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-interface GameNameProps {
+export interface GameNameProps {
   children: string;
 }
 export const GameName = styled.h1<GameNameProps>`
