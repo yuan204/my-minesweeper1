@@ -6,7 +6,7 @@ import { Top } from "./components/Top";
 
 ReactDOM.render(
   <Top feature="Flag" firstAction="ctrl" secondAction="click">
-    Minesweeper
+    Minesweeper66
   </Top>,
   document.getElementById("root")
 );
