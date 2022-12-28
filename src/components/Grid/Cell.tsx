@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Cell as CellType, CellState, Coord } from "@/helpers/Field";
 import { useMouseDown } from "@/hooks/useMouseDown";
 
-interface CellProps {
+export interface CellProps {
   coords: Coord;
   onContextMenu: (coords: Coord) => void;
   onClick: (coords: Coord) => void;
