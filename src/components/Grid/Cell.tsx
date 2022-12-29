@@ -12,27 +12,36 @@ export interface CellProps {
 
 export const Cell: FC<CellProps> = (props) => {
   const activeCells = [CellState.empty, CellState.mark, CellState.weakMark];
+  const { coords, children } = props;
+  const [x, y] = coords;
   const onContextMenu = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    if (activeCells.includes(props.children)) {
-      props.onContextMenu(props.coords);
+    if (activeCells.includes(children)) {
+      props.onContextMenu(coords);
     }
   };
   const onClick = (event: React.MouseEvent<HTMLDivElement>) =>
     props.onClick(props.coords);
-  const cellProps = { ...props, onContextMenu, onClick };
+  const cellProps = {
+    "data-testid": `${x}-${y}`,
+    children,
+    onContextMenu,
+    onClick,
+  };
   return <CellMap {...cellProps} />;
 };
 
 interface CellMapProps {
   onContextMenu: (event: React.MouseEvent<HTMLDivElement>) => void;
   onClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+  "data-testid": string;
 }
 
 export const CellMap: FC<CellMapProps> = ({ children, ...rest }) => {
   const [mousedown, onMouseDown, onMouseUp] = useMouseDown();
   const notActiveProps = {
     onContextMenu: rest.onContextMenu,
+    "data-testid": rest["data-testid"],
   };
   const activeProps = {
     ...rest,
