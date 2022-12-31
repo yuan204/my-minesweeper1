@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`top should render correctly 1`] = `
+<DocumentFragment>
+  <header
+    class="css-dn2347"
+  >
+    <h1
+      class="css-18kvaxm"
+    >
+      Minesweeper
+    </h1>
+    <strong
+      class="css-17qz6a2"
+    >
+      <strong>
+        Flag: 
+      </strong>
+      <code
+        class="css-12ap3z0"
+      >
+        <code
+          class="css-udfepp"
+        >
+          ctrl
+        </code>
+        +
+        <code
+          class="css-9c23k1"
+        >
+          click
+        </code>
+      </code>
+    </strong>
+  </header>
+</DocumentFragment>
+`;
