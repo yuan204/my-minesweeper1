@@ -14,7 +14,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "chromatic": "npx chromatic --project-token=3c0fc7a8d291",
-    "test:stryker": "stryker run",
+    "test:mutate": "stryker run",
     "prepare": "husky install"
   },
   "author": {
