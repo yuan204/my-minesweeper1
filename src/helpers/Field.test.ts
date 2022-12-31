@@ -61,6 +61,9 @@ describe("field generator", function () {
       const fields = fieldGenerator(10, 0.25);
       const cells = fields.flat();
       console.table(fields);
+      expect([...fields[0], ...fields[1]].join("")).not.toBe(
+        "99999999999999999999"
+      );
       expect(filterBombs(cells)).toHaveLength(25);
     });
   });

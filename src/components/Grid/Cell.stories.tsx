@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Cell } from "./Cell";
 
 export default {
-  title: "Top/Cell",
+  title: "Grid/Cell",
   component: Cell,
   argTypes: {
     coords: {

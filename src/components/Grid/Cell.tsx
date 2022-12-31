@@ -11,7 +11,7 @@ export interface CellProps {
 }
 
 export const Cell: FC<CellProps> = (props) => {
-  const activeCells = [CellState.empty, CellState.mark, CellState.weakMark];
+  const activeCells = [CellState.hidden, CellState.mark, CellState.weakMark];
   const { coords, children } = props;
   const [x, y] = coords;
   const onContextMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -23,7 +23,7 @@ export const Cell: FC<CellProps> = (props) => {
   const onClick = (event: React.MouseEvent<HTMLDivElement>) =>
     props.onClick(props.coords);
   const cellProps = {
-    "data-testid": `${x}-${y}`,
+    "data-testid": `${children}-${coords}`,
     children,
     onContextMenu,
     onClick,
@@ -81,7 +81,7 @@ interface CloseFrameProps {
   mousedown?: boolean;
 }
 
-const CloseFrame = styled.div<CloseFrameProps>`
+export const CloseFrame = styled.div<CloseFrameProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,8 +98,10 @@ const CloseFrame = styled.div<CloseFrameProps>`
     filter: brightness(1.1);
   }
 `;
+const transparent = "rgba(0,0,0,0)";
+
 const colors: { [key in CellType]: string } = {
-  0: "#000",
+  0: "#000000",
   1: "#2a48ec",
   2: "#2bb13d",
   3: "#ec6561",
@@ -108,10 +110,10 @@ const colors: { [key in CellType]: string } = {
   6: "#e400af",
   7: "#906a02",
   8: "#fa0707",
-  9: "transparent",
-  10: "transparent",
-  11: "transparent",
-  12: "transparent",
+  9: transparent,
+  10: transparent,
+  11: transparent,
+  12: transparent,
 };
 const RevealFrame = styled(CloseFrame)`
   border-color: #dddddd;
