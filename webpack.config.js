@@ -7,11 +7,14 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
+  devServer: {
+    port: 9000,
+  },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
-      '@': path.resolve(__dirname, 'src')
-    }
+      "@": path.resolve(__dirname, "src"),
+    },
   },
   module: {
     rules: [

@@ -1,12 +1,14 @@
-import React, { FC } from "react";
+import React, { ChangeEvent, FC } from "react";
 import styled from "@emotion/styled";
 
 export interface LevelProps {
   children: string[];
+  value?: string;
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
-export const Level: FC<LevelProps> = ({ children }) => {
+export const Level: FC<LevelProps> = ({ children, onChange, value }) => {
   return (
-    <Select>
+    <Select onChange={onChange} value={value}>
       {children.map((item) => (
         <Option key={item}>{item}</Option>
       ))}

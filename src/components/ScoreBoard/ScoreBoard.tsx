@@ -7,6 +7,8 @@ interface ScoreBoardProps {
   time: string;
   levels: string[];
   onReset: () => void;
+  onChangeLevel: () => void;
+  level: string;
   mines: string;
 }
 export const ScoreBoard: FC<ScoreBoardProps> = ({
@@ -14,12 +16,18 @@ export const ScoreBoard: FC<ScoreBoardProps> = ({
   levels,
   mines,
   onReset,
+  level,
+  onChangeLevel,
 }) => {
   return (
     <Wrapper>
       <Counter>{time}</Counter>
-      <Level>{levels}</Level>
-      <Reset onReset={onReset} />
+      <div>
+        <Level onChange={onChangeLevel} value={level}>
+          {levels}
+        </Level>
+        <Reset onReset={onReset} />
+      </div>
       <Counter>{mines}</Counter>
     </Wrapper>
   );
@@ -27,7 +35,7 @@ export const ScoreBoard: FC<ScoreBoardProps> = ({
 
 const Wrapper = styled.div`
   display: flex;
-  width: max-content;
+  width: 100%;
   padding-bottom: 2vw;
   justify-content: space-between;
 `;
