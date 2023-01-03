@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "jest",
+    "test:watch": "jest --watchAll",
     "build:babel": "babel examples --out-dir lib --extensions .ts",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",

@@ -8,6 +8,7 @@ export interface GridProps {
   onContextMenu: (coords: Coord) => void;
   onClick: (coords: Coord) => void;
 }
+
 export const Grid: FC<GridProps> = ({ children, ...rest }) => (
   <Wrapper size={children.length}>
     {children.map((row, y) =>
@@ -23,9 +24,11 @@ export const Grid: FC<GridProps> = ({ children, ...rest }) => (
     )}
   </Wrapper>
 );
+
 interface WrapperProps {
   size: number;
 }
+
 const Wrapper = styled.div<WrapperProps>`
   display: grid;
   grid-template-columns: repeat(${({ size }) => size}, auto);

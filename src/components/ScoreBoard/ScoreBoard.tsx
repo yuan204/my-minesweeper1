@@ -2,15 +2,17 @@ import styled from "@emotion/styled";
 import { Counter } from "@/components/ScoreBoard/Counter";
 import { Level } from "@/components/ScoreBoard/Level";
 import { Reset } from "@/components/ScoreBoard/Reset";
-import React, { FC } from "react";
+import React, { ChangeEvent, FC } from "react";
+
 interface ScoreBoardProps {
   time: string;
   levels: string[];
   onReset: () => void;
-  onChangeLevel: () => void;
+  onChangeLevel: (event: ChangeEvent<HTMLSelectElement>) => void;
   level: string;
   mines: string;
 }
+
 export const ScoreBoard: FC<ScoreBoardProps> = ({
   time,
   levels,

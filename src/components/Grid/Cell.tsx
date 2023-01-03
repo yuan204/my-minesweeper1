@@ -13,7 +13,6 @@ export interface CellProps {
 export const Cell: FC<CellProps> = (props) => {
   const activeCells = [CellState.hidden, CellState.mark, CellState.weakMark];
   const { coords, children } = props;
-  const [x, y] = coords;
   const onContextMenu = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     if (activeCells.includes(children)) {

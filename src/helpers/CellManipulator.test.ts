@@ -43,7 +43,7 @@ describe("incrementNeibours", function () {
   });
   it("field 9x9", function () {
     const neibours = incrementNeibours(
-      [5, 4],
+      [4, 5],
       [
         [9, 1, 0, 0, 0, 0, 1, 1, 1],
         [1, 1, 1, 1, 1, 0, 1, 9, 1],

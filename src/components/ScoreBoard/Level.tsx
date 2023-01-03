@@ -6,6 +6,7 @@ export interface LevelProps {
   value?: string;
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
+
 export const Level: FC<LevelProps> = ({ children, onChange, value }) => {
   return (
     <Select onChange={onChange} value={value}>
