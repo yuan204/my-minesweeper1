@@ -10,13 +10,12 @@ import {
   emptyFieldGenerator,
   fieldGenerator,
 } from "@/helpers/Field";
-import { gameSetting, LevelName } from "@/modules/game/gameSetting";
+import { gameSetting, LevelName, GameLevels } from "@/modules/game/gameSetting";
 import { openCell } from "@/helpers/CellManipulator";
 
 export const Game = () => {
-  const levels = ["beginner", "intermediate", "expert"];
   const [level, setLevel] = useState<LevelName>("beginner");
-  let [size, bombs] = gameSetting[level as LevelName];
+  const [size, bombs] = gameSetting[level as LevelName];
   const [playerFields, setPlayerFields] = useState(
     emptyFieldGenerator(size, CellState.hidden)
   );
@@ -26,13 +25,15 @@ export const Game = () => {
   const onChangeLevel = (event: ChangeEvent<HTMLSelectElement>) => {
     const level = event.target.value as LevelName;
     setLevel(level);
-    [size, bombs] = gameSetting[level as LevelName];
-    onReset();
+    const setting = gameSetting[level as LevelName];
+    resetHandler(setting);
   };
-  const onReset = () => {
+  const resetHandler = ([size, bombs]: [number, number]) => {
     setPlayerFields(emptyFieldGenerator(size, CellState.hidden));
     setGameFields(fieldGenerator(size, bombs / (size * size)));
   };
+
+  const onReset = () => resetHandler([size, bombs]);
   const onContextMenu = () => null;
   const onClick = (coords: Coord) => {
     const newPlayerFields = openCell(coords, playerFields, gameFields);
@@ -46,7 +47,7 @@ export const Game = () => {
       <GameArea>
         <ScoreBoard
           time="000"
-          levels={levels}
+          levels={GameLevels as unknown as string[]}
           onReset={onReset}
           mines="010"
           level={level}

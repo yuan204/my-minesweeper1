@@ -107,3 +107,7 @@ describe("CheckItemInField", function () {
     expect(checkItemInField([1, 1], fields)).toBe(true);
   });
 });
+
+describe("check openCell", () => {
+  it("bomb should be throw error", function () {});
+});
