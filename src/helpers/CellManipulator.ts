@@ -1,4 +1,5 @@
 import { Coord, Field, CellState } from "./Field";
+
 export const checkItemInField = ([y, x]: Coord, field: Field): boolean => {
   const size = field.length;
   return x >= 0 && y >= 0 && x < size && y < size;

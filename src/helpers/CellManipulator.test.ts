@@ -2,9 +2,11 @@ import {
   checkItemInField,
   getNeibours,
   incrementNeibours,
+  openCell,
 } from "./CellManipulator";
 import { CellState } from "./Field";
-const { empty, bomb } = CellState;
+
+const { empty, bomb, hidden } = CellState;
 
 describe("incrementNeibours", function () {
   it("fields with only one item", function () {
@@ -109,5 +111,90 @@ describe("CheckItemInField", function () {
 });
 
 describe("check openCell", () => {
-  it("bomb should be throw error", function () {});
+  it("open cell with bomb should be throw error", () => {
+    expect(() =>
+      openCell(
+        [1, 1],
+        [
+          [hidden, hidden],
+          [hidden, hidden],
+        ],
+        [
+          [1, 1],
+          [1, bomb],
+        ]
+      )
+    ).toThrow("game over");
+  });
+  it("open cell with number", function () {
+    expect(
+      openCell(
+        [1, 1],
+        [
+          [hidden, hidden, hidden],
+          [hidden, hidden, hidden],
+          [hidden, hidden, hidden],
+        ],
+        [
+          [bomb, 1, empty],
+          [1, 2, 1],
+          [empty, 1, bomb],
+        ]
+      )
+    ).toStrictEqual([
+      [hidden, hidden, hidden],
+      [hidden, 2, hidden],
+      [hidden, hidden, hidden],
+    ]);
+  });
+  describe("open cell with emoty", function () {
+    it("open cell with emoty 3 * 3 case", function () {
+      expect(
+        openCell(
+          [0, 2],
+          [
+            [hidden, hidden, hidden],
+            [hidden, hidden, hidden],
+            [hidden, hidden, hidden],
+          ],
+          [
+            [bomb, 1, empty],
+            [1, 2, 1],
+            [empty, 1, bomb],
+          ]
+        )
+      ).toStrictEqual([
+        [hidden, 1, empty],
+        [hidden, 2, 1],
+        [hidden, hidden, hidden],
+      ]);
+    });
+    it("open cell with emoty 5*5 case", function () {
+      expect(
+        openCell(
+          [0, 1],
+          [
+            [hidden, hidden, hidden, hidden, hidden],
+            [hidden, hidden, hidden, hidden, hidden],
+            [hidden, hidden, hidden, hidden, hidden],
+            [hidden, hidden, hidden, hidden, hidden],
+            [hidden, hidden, hidden, hidden, hidden],
+          ],
+          [
+            [empty, empty, empty, 1, bomb],
+            [1, 1, 1, 1, 1],
+            [bomb, 1, bomb, 1, 1],
+            [2, 2, 1, 1, 1],
+            [bomb, 1, empty, empty, empty],
+          ]
+        )
+      ).toStrictEqual([
+        [empty, empty, empty, 1, hidden],
+        [1, 1, 1, 1, hidden],
+        [hidden, hidden, hidden, hidden, hidden],
+        [hidden, hidden, hidden, hidden, hidden],
+        [hidden, hidden, hidden, hidden, hidden],
+      ]);
+    });
+  });
 });

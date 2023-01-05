@@ -26,6 +26,7 @@ export const Cell: FC<CellProps> = (props) => {
     children,
     onContextMenu,
     onClick,
+    role: "cell",
   };
   return <CellMap {...cellProps} />;
 };

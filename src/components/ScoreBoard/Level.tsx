@@ -11,7 +11,9 @@ export const Level: FC<LevelProps> = ({ children, onChange, value }) => {
   return (
     <Select onChange={onChange} value={value}>
       {children.map((item) => (
-        <Option key={item}>{item}</Option>
+        <Option key={item} value={item}>
+          {item}
+        </Option>
       ))}
     </Select>
   );
